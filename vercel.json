@@ -26,11 +26,6 @@
       "NEXT_PUBLIC_DEBUG": "false"
     }
   },
-  "functions": {
-    "app/api/**/*.ts": {
-      "maxDuration": 10
-    }
-  },
   "regions": ["iad1"],
   "public": false,
   "github": {
