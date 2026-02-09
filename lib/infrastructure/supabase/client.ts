@@ -5,6 +5,27 @@ import { v4 as uuidv4 } from 'uuid'
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 
+// 构建时验证环境变量（仅在服务器端）
+if (typeof window === 'undefined') {
+  if (!supabaseUrl) {
+    console.error('❌ NEXT_PUBLIC_SUPABASE_URL 环境变量未配置')
+    console.error('请在 Vercel 项目设置中添加环境变量：')
+    console.error('名称：NEXT_PUBLIC_SUPABASE_URL')
+    console.error('值：https://your-project.supabase.co')
+    throw new Error('NEXT_PUBLIC_SUPABASE_URL 环境变量未配置')
+  }
+  if (!supabaseAnonKey) {
+    console.error('❌ NEXT_PUBLIC_SUPABASE_ANON_KEY 环境变量未配置')
+    console.error('请在 Vercel 项目设置中添加环境变量：')
+    console.error('名称：NEXT_PUBLIC_SUPABASE_ANON_KEY')
+    console.error('值：your-anon-key')
+    throw new Error('NEXT_PUBLIC_SUPABASE_ANON_KEY 环境变量未配置')
+  }
+  console.log('✅ Supabase 环境变量配置验证通过')
+  console.log(`   URL: ${supabaseUrl.substring(0, 30)}...`)
+  console.log(`   Key: ${supabaseAnonKey.substring(0, 10)}...`)
+}
+
 /**
  * Supabase 客户端实例
  * 用于所有数据库操作
