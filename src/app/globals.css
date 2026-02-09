@@ -1,0 +1,398 @@
+/* Retro-Futurism 字体 */
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&family=Russo+One&family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 226, 232, 240;
+  --background-start-rgb: 15, 15, 35;
+  --background-end-rgb: 26, 26, 46;
+  /* 霓虹颜色变量 */
+  --neon-primary: 124, 58, 237;
+  --neon-secondary: 20, 184, 166;
+  --neon-accent: 236, 72, 153;
+  /* Retro-Futurism 主题色 */
+  --color-retro-background: #0f0f23;
+  --color-retro-surface: #1a1a2e;
+  --color-retro-text-primary: #e2e8f0;
+  --color-retro-text-secondary: #94a3b8;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      rgb(var(--background-start-rgb)),
+      rgb(var(--background-end-rgb))
+    );
+  font-family: 'Chakra Petch', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* 动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* ============================================
+   Retro-Futurism 全局样式
+   ============================================ */
+
+/* CRT 扫描线效果 */
+.crt-scanlines::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 0, 0, 0.15) 50%
+  );
+  background-size: 100% 4px;
+  z-index: 2;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  border-radius: inherit;
+}
+
+/* CRT 边框效果 */
+.crt-border {
+  border: 2px solid rgba(124, 58, 237, 0.3);
+  box-shadow:
+    inset 0 0 20px rgba(124, 58, 237, 0.2),
+    0 0 30px rgba(124, 58, 237, 0.1);
+  position: relative;
+}
+
+.crt-border::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  border: 1px solid rgba(124, 58, 237, 0.1);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* CRT 辉光效果 */
+.crt-glow {
+  box-shadow:
+    0 0 60px rgba(124, 58, 237, 0.3),
+    0 0 100px rgba(124, 58, 237, 0.1),
+    inset 0 0 20px rgba(124, 58, 237, 0.1);
+}
+
+/* 霓虹文本发光效果 */
+.neon-text {
+  color: #fff;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 20px #7c3aed,
+    0 0 40px #7c3aed,
+    0 0 80px #7c3aed;
+}
+
+/* 故障效果动画 */
+@keyframes glitch {
+  0% {
+    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+                -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
+                0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  14% {
+    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+                -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
+                0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  15% {
+    text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+                0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+                -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  49% {
+    text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+                0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+                -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  50% {
+    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+                0.05em 0 0 rgba(0, 255, 0, 0.75),
+                0 -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  99% {
+    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+                0.05em 0 0 rgba(0, 255, 0, 0.75),
+                0 -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  100% {
+    text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75),
+                -0.025em -0.025em 0 rgba(0, 255, 0, 0.75),
+                -0.025em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+}
+
+.animate-glitch {
+  animation: glitch 2s infinite;
+}
+
+/* 图像故障效果 */
+@keyframes glitch-image {
+  0% {
+    clip-path: inset(40% 0 61% 0);
+    transform: translate(-2px, 2px);
+  }
+  5% {
+    clip-path: inset(92% 0 1% 0);
+    transform: translate(1px, -2px);
+  }
+  10% {
+    clip-path: inset(43% 0 1% 0);
+    transform: translate(-1px, 3px);
+  }
+  15% {
+    clip-path: inset(25% 0 58% 0);
+    transform: translate(2px, -1px);
+  }
+  20% {
+    clip-path: inset(54% 0 7% 0);
+    transform: translate(-2px, 2px);
+  }
+  45% {
+    clip-path: inset(58% 0 43% 0);
+    transform: translate(1px, -2px);
+  }
+  50% {
+    clip-path: inset(98% 0 1% 0);
+    transform: translate(-1px, 3px);
+  }
+  55% {
+    clip-path: inset(48% 0 13% 0);
+    transform: translate(2px, -1px);
+  }
+  60% {
+    clip-path: inset(3% 0 46% 0);
+    transform: translate(-2px, 2px);
+  }
+  65% {
+    clip-path: inset(88% 0 2% 0);
+    transform: translate(1px, -2px);
+  }
+  70% {
+    clip-path: inset(34% 0 32% 0);
+    transform: translate(-1px, 3px);
+  }
+  75% {
+    clip-path: inset(76% 0 4% 0);
+    transform: translate(2px, -1px);
+  }
+  80% {
+    clip-path: inset(12% 0 33% 0);
+    transform: translate(-2px, 2px);
+  }
+  85% {
+    clip-path: inset(64% 0 8% 0);
+    transform: translate(1px, -2px);
+  }
+  90% {
+    clip-path: inset(9% 0 27% 0);
+    transform: translate(-1px, 3px);
+  }
+  95% {
+    clip-path: inset(87% 0 2% 0);
+    transform: translate(2px, -1px);
+  }
+  100% {
+    clip-path: inset(23% 0 58% 0);
+    transform: translate(-2px, 2px);
+  }
+}
+
+.animate-glitch-image {
+  animation: glitch-image 5s infinite;
+}
+
+/* 减少动画偏好支持 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .crt-scanlines::before {
+    display: none;
+  }
+
+  .animate-pulse,
+  .animate-pulse-glow,
+  .animate-pulse-slow,
+  .animate-glitch,
+  .animate-glitch-image,
+  .animate-ping,
+  .animate-spin,
+  .animate-bounce {
+    animation: none !important;
+  }
+
+  .hover-lift:hover {
+    transform: none !important;
+  }
+
+  .active-scale:active {
+    transform: none !important;
+  }
+}
+
+/* Retro-Futurism 主题变量 */
+:root {
+  /* 霓虹颜色变量 */
+  --neon-primary: 124, 58, 237;
+  --neon-secondary: 20, 184, 166;
+  --neon-accent: 236, 72, 153;
+
+  /* 背景变量 */
+  --bg-retro-background: #0f0f23;
+  --bg-retro-surface: #1a1a2e;
+
+  /* 文本变量 */
+  --text-retro-primary: #e2e8f0;
+  --text-retro-secondary: #94a3b8;
+}
+
+/* 暗色模式适配 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* 暗色模式下增强对比度 */
+    --bg-retro-background: #0a0a18;
+    --bg-retro-surface: #151525;
+  }
+}
+
+/* 自定义滚动条 - Retro 风格 */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  background: var(--bg-retro-surface);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-retro-surface);
+  border-radius: 6px;
+  border: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.8), rgba(20, 184, 166, 0.8));
+  border-radius: 6px;
+  border: 2px solid var(--bg-retro-surface);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 1), rgba(20, 184, 166, 1));
+}
+
+/* 选择文本样式 */
+::selection {
+  background-color: rgba(124, 58, 237, 0.5);
+  color: white;
+}
+
+/* 字体平滑 */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* 图片抗锯齿 */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* 链接样式 */
+a {
+  color: rgba(124, 58, 237, 0.9);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: rgba(124, 58, 237, 1);
+  text-shadow: 0 0 8px rgba(124, 58, 237, 0.5);
+}
+
+/* 焦点样式 */
+:focus-visible {
+  outline: 2px solid rgba(124, 58, 237, 0.8);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* 禁用状态 */
+[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 工具类 */
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.select-none {
+  user-select: none;
+}
+
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
+
+.backdrop-blur-md {
+  backdrop-filter: blur(8px);
+}
+
+.backdrop-blur-lg {
+  backdrop-filter: blur(16px);
+}

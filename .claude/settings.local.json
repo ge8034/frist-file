@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(uipro init:*)",
+      "Bash(python .claude/skills/ui-ux-pro-max/scripts/search.py:*)",
+      "Bash(npm run build:*)",
+      "Bash(npx tailwindcss:*)",
+      "Bash(if:*)",
+      "Bash(then grep -n \"text-retro-text\" .next/static/css/app/layout.css)",
+      "Bash(else echo \"CSS文件未找到\")",
+      "Bash(fi)"
+    ]
+  }
+}

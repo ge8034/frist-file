@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>卡牌设计预览</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .card-container {
+            perspective: 1000px;
+        }
+        .card {
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card.selected {
+            transform: scale(1.1);
+            box-shadow: 0 0 0 4px #60a5fa;
+        }
+        .card.disabled {
+            opacity: 0.5;
+            filter: grayscale(1);
+        }
+    </style>
+</head>
+<body class="p-8">
+    <h1 class="text-4xl font-bold text-center text-white mb-8">卡牌设计预览</h1>
+
+    <!-- 普通卡牌 -->
+    <section class="mb-12">
+        <h2 class="text-2xl font-semibold text-white mb-6 text-center">普通卡牌</h2>
+        <div class="flex flex-wrap gap-4 justify-center">
+            <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg">
+                <div class="w-full h-full flex flex-col p-2">
+                    <div class="flex justify-between items-start">
+                        <span class="text-sm font-bold leading-none text-gray-900">A</span>
+                        <span class="text-xs">♠</span>
+                    </div>
+                    <div class="flex-1 flex items-center justify-center">
+                        <span class="text-5xl">♠</span>
+                    </div>
+                    <div class="flex justify-between items-end flex-row-reverse">
+                        <span class="text-sm font-bold leading-none text-gray-900">A</span>
+                        <span class="text-xs">♠</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg">
+                <div class="w-full h-full flex flex-col p-2">
+                    <div class="flex justify-between items-start">
+                        <span class="text-sm font-bold leading-none text-red-600">K</span>
+                        <span class="text-xs text-red-600">♥</span>
+                    </div>
+                    <div class="flex-1 flex items-center justify-center">
+                        <span class="text-5xl text-red-600">♥</span>
+                    </div>
+                    <div class="flex justify-between items-end flex-row-reverse">
+                        <span class="text-sm font-bold leading-none text-red-600">K</span>
+                        <span class="text-xs text-red-600">♥</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg">
+                <div class="w-full h-full flex flex-col p-2">
+                    <div class="flex justify-between items-start">
+                        <span class="text-sm font-bold leading-none text-red-600">Q</span>
+                        <span class="text-xs text-red-600">♦</span>
+                    </div>
+                    <div class="flex-1 flex items-center justify-center">
+                        <span class="text-5xl text-red-600">♦</span>
+                    </div>
+                    <div class="flex justify-between items-end flex-row-reverse">
+                        <span class="text-sm font-bold leading-none text-red-600">Q</span>
+                        <span class="text-xs text-red-600">♦</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg">
+                <div class="w-full h-full flex flex-col p-2">
+                    <div class="flex justify-between items-start">
+                        <span class="text-sm font-bold leading-none text-gray-900">J</span>
+                        <span class="text-xs text-gray-900">♣</span>
+                    </div>
+                    <div class="flex-1 flex items-center justify-center">
+                        <span class="text-5xl text-gray-900">♣</span>
+                    </div>
+                    <div class="flex justify-between items-end flex-row-reverse">
+                        <span class="text-sm font-bold leading-none text-gray-900">J</span>
+                        <span class="text-xs text-gray-900">♣</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg">
+                <div class="w-full h-full flex flex-col p-2">
+                    <div class="flex justify-between items-start">
+                        <span class="text-sm font-bold leading-none text-gray-900">10</span>
+                        <span class="text-xs text-gray-900">♠</span>
+                    </div>
+                    <div class="flex-1 flex items-center justify-center">
+                        <span class="text-5xl text-gray-900">♠</span>
+                    </div>
+                    <div class="flex justify-between items-end flex-row-reverse">
+                        <span class="text-sm font-bold leading-none text-gray-900">10</span>
+                        <span class="text-xs text-gray-900">♠</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 选中状态 -->
+    <section class="mb-12">
+        <h2 class="text-2xl font-semibold text-white mb-6 text-center">选中状态</h2>
+        <div class="flex gap-4 justify-center">
+            <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-lg cursor-pointer selected">
+                <div class="w-full h-full flex flex-col p-2">
+                    <div class="flex justify-between items-start">
+                        <span class="text-sm font-bold leading-none text-gray-900">A</span>
+                        <span class="text-xs">♠</span>
+                    </div>
+                    <div class="flex-1 flex items-center justify-center">
+                        <span class="text-5xl">♠</span>
+                    </div>
+                    <div class="flex justify-between items-end flex-row-reverse">
+                        <span class="text-sm font-bold leading-none text-gray-900">A</span>
+                        <span class="text-xs">♠</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-lg cursor-pointer selected">
+                <div class="w-full h-full flex flex-col p-2">
+                    <div class="flex justify-between items-start">
+                        <span class="text-sm font-bold leading-none text-red-600">K</span>
+                        <span class="text-xs text-red-600">♥</span>
+                    </div>
+                    <div class="flex-1 flex items-center justify-center">
+                        <span class="text-5xl text-red-600">♥</span>
+                    </div>
+                    <div class="flex justify-between items-end flex-row-reverse">
+                        <span class="text-sm font-bold leading-none text-red-600">K</span>
+                        <span class="text-xs text-red-600">♥</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-lg cursor-pointer selected">
+                <div class="w-full h-full flex flex-col p-2">
+                    <div class="flex justify-between items-start">
+                        <span class="text-sm font-bold leading-none text-red-600">Q</span>
+                        <span class="text-xs text-red-600">♦</span>
+                    </div>
+                    <div class="flex-1 flex items-center justify-center">
+                        <span class="text-5xl text-red-600">♦</span>
+                    </div>
+                    <div class="flex justify-between items-end flex-row-reverse">
+                        <span class="text-sm font-bold leading-none text-red-600">Q</span>
+                        <span class="text-xs text-red-600">♦</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 禁用状态 -->
+    <section class="mb-12">
+        <h2 class="text-2xl font-semibold text-white mb-6 text-center">禁用状态</h2>
+        <div class="flex gap-4 justify-center">
+            <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-md cursor-not-allowed disabled">
+                <div class="w-full h-full flex flex-col p-2">
+                    <div class="flex justify-between items-start">
+                        <span class="text-sm font-bold leading-none text-gray-900">A</span>
+                        <span class="text-xs">♠</span>
+                    </div>
+                    <div class="flex-1 flex items-center justify-center">
+                        <span class="text-5xl">♠</span>
+                    </div>
+                    <div class="flex justify-between items-end flex-row-reverse">
+                        <span class="text-sm font-bold leading-none text-gray-900">A</span>
+                        <span class="text-xs">♠</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-md cursor-not-allowed disabled">
+                <div class="w-full h-full flex flex-col p-2">
+                    <div class="flex justify-between items-start">
+                        <span class="text-sm font-bold leading-none text-red-600">K</span>
+                        <span class="text-xs text-red-600">♥</span>
+                    </div>
+                    <div class="flex-1 flex items-center justify-center">
+                        <span class="text-5xl text-red-600">♥</span>
+                    </div>
+                    <div class="flex justify-between items-end flex-row-reverse">
+                        <span class="text-sm font-bold leading-none text-red-600">K</span>
+                        <span class="text-xs text-red-600">♥</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 翻转状态 -->
+    <section class="mb-12">
+        <h2 class="text-2xl font-semibold text-white mb-6 text-center">翻转状态</h2>
+        <div class="flex gap-4 justify-center">
+            <div class="w-[110px] h-[155px] bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg shadow-md flex items-center justify-center">
+                <div class="text-center">
+                    <div class="text-4xl mb-2">🎴</div>
+                    <div class="text-xs text-blue-600 font-medium">卡牌背面</div>
+                </div>
+            </div>
+
+            <div class="w-[110px] h-[155px] bg-white rounded-lg shadow-md">
+                <div class="w-full h-full flex flex-col p-2">
+                    <div class="flex justify-between items-start">
+                        <span class="text-sm font-bold leading-none text-gray-900">A</span>
+                        <span class="text-xs">♠</span>
+                    </div>
+                    <div class="flex-1 flex items-center justify-center">
+                        <span class="text-5xl">♠</span>
+                    </div>
+                    <div class="flex justify-between items-end flex-row-reverse">
+                        <span class="text-sm font-bold leading-none text-gray-900">A</span>
+                        <span class="text-xs">♠</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 大小王 -->
+    <section class="mb-12">
+        <h2 class="text-2xl font-semibold text-white mb-6 text-center">大小王</h2>
+        <div class="flex gap-8 justify-center">
+            <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg">
+                <div class="w-full h-full flex flex-col p-2">
+                    <div class="flex justify-between items-start">
+                        <span class="text-sm font-bold leading-none text-purple-600">小王</span>
+                    </div>
+                    <div class="flex-1 flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-purple-600">小王</div>
+                            <div class="text-lg mt-1">🎭</div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-end flex-row-reverse">
+                        <span class="text-sm font-bold leading-none text-purple-600">小王</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg">
+                <div class="w-full h-full flex flex-col p-2">
+                    <div class="flex justify-between items-start">
+                        <span class="text-sm font-bold leading-none text-purple-600">大王</span>
+                    </div>
+                    <div class="flex-1 flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-purple-600">大王</div>
+                            <div class="text-lg mt-1">🤡</div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-end flex-row-reverse">
+                        <span class="text-sm font-bold leading-none text-purple-600">大王</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 完整牌组预览 -->
+    <section class="mb-12">
+        <h2 class="text-2xl font-semibold text-white mb-6 text-center">完整牌组预览（部分）</h2>
+        <div class="flex flex-wrap gap-4 justify-center max-w-4xl mx-auto">
+            <!-- 黑桃 -->
+            <div class="text-center">
+                <h3 class="text-white font-semibold mb-2">♠ 黑桃</h3>
+                <div class="flex flex-wrap gap-2">
+                    <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg">
+                        <div class="w-full h-full flex flex-col p-2">
+                            <div class="flex justify-between items-start">
+                                <span class="text-sm font-bold leading-none text-gray-900">2</span>
+                                <span class="text-xs">♠</span>
+                            </div>
+                            <div class="flex-1 flex items-center justify-center">
+                                <span class="text-5xl">♠</span>
+                            </div>
+                            <div class="flex justify-between items-end flex-row-reverse">
+                                <span class="text-sm font-bold leading-none text-gray-900">2</span>
+                                <span class="text-xs">♠</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg">
+                        <div class="w-full h-full flex flex-col p-2">
+                            <div class="flex justify-between items-start">
+                                <span class="text-sm font-bold leading-none text-gray-900">3</span>
+                                <span class="text-xs">♠</span>
+                            </div>
+                            <div class="flex-1 flex items-center justify-center">
+                                <span class="text-5xl">♠</span>
+                            </div>
+                            <div class="flex justify-between items-end flex-row-reverse">
+                                <span class="text-sm font-bold leading-none text-gray-900">3</span>
+                                <span class="text-xs">♠</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg">
+                        <div class="w-full h-full flex flex-col p-2">
+                            <div class="flex justify-between items-start">
+                                <span class="text-sm font-bold leading-none text-gray-900">A</span>
+                                <span class="text-xs">♠</span>
+                            </div>
+                            <div class="flex-1 flex items-center justify-center">
+                                <span class="text-5xl">♠</span>
+                            </div>
+                            <div class="flex justify-between items-end flex-row-reverse">
+                                <span class="text-sm font-bold leading-none text-gray-900">A</span>
+                                <span class="text-xs">♠</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 红桃 -->
+            <div class="text-center">
+                <h3 class="text-white font-semibold mb-2">♥ 红桃</h3>
+                <div class="flex flex-wrap gap-2">
+                    <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg">
+                        <div class="w-full h-full flex flex-col p-2">
+                            <div class="flex justify-between items-start">
+                                <span class="text-sm font-bold leading-none text-red-600">2</span>
+                                <span class="text-xs text-red-600">♥</span>
+                            </div>
+                            <div class="flex-1 flex items-center justify-center">
+                                <span class="text-5xl text-red-600">♥</span>
+                            </div>
+                            <div class="flex justify-between items-end flex-row-reverse">
+                                <span class="text-sm font-bold leading-none text-red-600">2</span>
+                                <span class="text-xs text-red-600">♥</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg">
+                        <div class="w-full h-full flex flex-col p-2">
+                            <div class="flex justify-between items-start">
+                                <span class="text-sm font-bold leading-none text-red-600">K</span>
+                                <span class="text-xs text-red-600">♥</span>
+                            </div>
+                            <div class="flex-1 flex items-center justify-center">
+                                <span class="text-5xl text-red-600">♥</span>
+                            </div>
+                            <div class="flex justify-between items-end flex-row-reverse">
+                                <span class="text-sm font-bold leading-none text-red-600">K</span>
+                                <span class="text-xs text-red-600">♥</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg">
+                        <div class="w-full h-full flex flex-col p-2">
+                            <div class="flex justify-between items-start">
+                                <span class="text-sm font-bold leading-none text-red-600">Q</span>
+                                <span class="text-xs text-red-600">♥</span>
+                            </div>
+                            <div class="flex-1 flex items-center justify-center">
+                                <span class="text-5xl text-red-600">♥</span>
+                            </div>
+                            <div class="flex justify-between items-end flex-row-reverse">
+                                <span class="text-sm font-bold leading-none text-red-600">Q</span>
+                                <span class="text-xs text-red-600">♥</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 方块 -->
+            <div class="text-center">
+                <h3 class="text-white font-semibold mb-2">♦ 方块</h3>
+                <div class="flex flex-wrap gap-2">
+                    <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg">
+                        <div class="w-full h-full flex flex-col p-2">
+                            <div class="flex justify-between items-start">
+                                <span class="text-sm font-bold leading-none text-red-600">2</span>
+                                <span class="text-xs text-red-600">♦</span>
+                            </div>
+                            <div class="flex-1 flex items-center justify-center">
+                                <span class="text-5xl text-red-600">♦</span>
+                            </div>
+                            <div class="flex justify-between items-end flex-row-reverse">
+                                <span class="text-sm font-bold leading-none text-red-600">2</span>
+                                <span class="text-xs text-red-600">♦</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg">
+                        <div class="w-full h-full flex flex-col p-2">
+                            <div class="flex justify-between items-start">
+                                <span class="text-sm font-bold leading-none text-red-600">K</span>
+                                <span class="text-xs text-red-600">♦</span>
+                            </div>
+                            <div class="flex-1 flex items-center justify-center">
+                                <span class="text-5xl text-red-600">♦</span>
+                            </div>
+                            <div class="flex justify-between items-end flex-row-reverse">
+                                <span class="text-sm font-bold leading-none text-red-600">K</span>
+                                <span class="text-xs text-red-600">♦</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg">
+                        <div class="w-full h-full flex flex-col p-2">
+                            <div class="flex justify-between items-start">
+                                <span class="text-sm font-bold leading-none text-red-600">Q</span>
+                                <span class="text-xs text-red-600">♦</span>
+                            </div>
+                            <div class="flex-1 flex items-center justify-center">
+                                <span class="text-5xl text-red-600">♦</span>
+                            </div>
+                            <div class="flex justify-between items-end flex-row-reverse">
+                                <span class="text-sm font-bold leading-none text-red-600">Q</span>
+                                <span class="text-xs text-red-600">♦</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 梅花 -->
+            <div class="text-center">
+                <h3 class="text-white font-semibold mb-2">♣ 梅花</h3>
+                <div class="flex flex-wrap gap-2">
+                    <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg">
+                        <div class="w-full h-full flex flex-col p-2">
+                            <div class="flex justify-between items-start">
+                                <span class="text-sm font-bold leading-none text-gray-900">2</span>
+                                <span class="text-xs">♣</span>
+                            </div>
+                            <div class="flex-1 flex items-center justify-center">
+                                <span class="text-5xl">♣</span>
+                            </div>
+                            <div class="flex justify-between items-end flex-row-reverse">
+                                <span class="text-sm font-bold leading-none text-gray-900">2</span>
+                                <span class="text-xs">♣</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg">
+                        <div class="w-full h-full flex flex-col p-2">
+                            <div class="flex justify-between items-start">
+                                <span class="text-sm font-bold leading-none text-gray-900">K</span>
+                                <span class="text-xs">♣</span>
+                            </div>
+                            <div class="flex-1 flex items-center justify-center">
+                                <span class="text-5xl">♣</span>
+                            </div>
+                            <div class="flex justify-between items-end flex-row-reverse">
+                                <span class="text-sm font-bold leading-none text-gray-900">K</span>
+                                <span class="text-xs">♣</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card w-[110px] h-[155px] bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg">
+                        <div class="w-full h-full flex flex-col p-2">
+                            <div class="flex justify-between items-start">
+                                <span class="text-sm font-bold leading-none text-gray-900">Q</span>
+                                <span class="text-xs">♣</span>
+                            </div>
+                            <div class="flex-1 flex items-center justify-center">
+                                <span class="text-5xl">♣</span>
+                            </div>
+                            <div class="flex justify-between items-end flex-row-reverse">
+                                <span class="text-sm font-bold leading-none text-gray-900">Q</span>
+                                <span class="text-xs">♣</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 颜色说明 -->
+    <section class="max-w-2xl mx-auto bg-white/20 backdrop-blur-sm rounded-lg p-6">
+        <h2 class="text-2xl font-semibold text-white mb-4 text-center">颜色设计说明</h2>
+        <div class="grid grid-cols-2 gap-4 text-white">
+            <div class="bg-white/10 rounded-lg p-3">
+                <div class="font-semibold mb-2">♠ 黑桃</div>
+                <div>颜色：黑色</div>
+                <div>Tailwind: text-gray-900</div>
+            </div>
+            <div class="bg-white/10 rounded-lg p-3">
+                <div class="font-semibold mb-2">♥ 红桃</div>
+                <div>颜色：红色</div>
+                <div>Tailwind: text-red-600</div>
+            </div>
+            <div class="bg-white/10 rounded-lg p-3">
+                <div class="font-semibold mb-2">♣ 梅花</div>
+                <div>颜色：黑色</div>
+                <div>Tailwind: text-gray-900</div>
+            </div>
+            <div class="bg-white/10 rounded-lg p-3">
+                <div class="font-semibold mb-2">♦ 方块</div>
+                <div>颜色：红色</div>
+                <div>Tailwind: text-red-600</div>
+            </div>
+            <div class="bg-white/10 rounded-lg p-3 col-span-2">
+                <div class="font-semibold mb-2">🤡 大小王</div>
+                <div>颜色：紫色</div>
+                <div>Tailwind: text-purple-600</div>
+            </div>
+        </div>
+    </section>
+
+    <p class="text-center text-white/70 mt-8">在浏览器中打开此文件即可查看卡牌设计效果</p>
+</body>
+</html>
