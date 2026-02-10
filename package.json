@@ -10,7 +10,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "type-check": "pyright",
-    "build:cloudflare": "next build && rm -rf .next/cache"
+    "build:cloudflare": "echo \"🚀 开始 Cloudflare Pages 构建...\" && next build && echo \"✅ Next.js 构建完成\" && echo \"🧹 清理缓存目录...\" && rm -rf .next/cache && echo \"📁 检查构建输出...\" && ls -la .next/ 2>/dev/null || dir .next && echo \"✅ Cloudflare Pages 构建完成\""
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",

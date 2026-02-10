@@ -21,6 +21,8 @@ const nextConfig = {
   },
   // 压缩输出
   compress: true,
+  // 确保trailingSlash为false，避免路径问题
+  trailingSlash: false,
 }
 
 module.exports = nextConfig

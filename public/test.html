@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cloudflare Pages 测试页面</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0070f3;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✅ Cloudflare Pages 测试页面</h1>
+        <div class="status success">
+            <strong>状态：运行正常</strong>
+            <p>如果能看到此页面，说明 Cloudflare Pages 基础配置正确。</p>
+        </div>
+
+        <div class="status info">
+            <h3>Next.js 应用状态</h3>
+            <p>Next.js 构建已成功完成。此测试页面位于 <code>/public/test.html</code>。</p>
+            <p>如果 Next.js 应用无法访问，请检查：</p>
+            <ol>
+                <li>Build output 目录是否设置为 <code>.next</code></li>
+                <li>Cloudflare Pages 路由配置是否正确</li>
+                <li>Next.js 输出文件是否存在</li>
+            </ol>
+        </div>
+
+        <h3>构建信息</h3>
+        <ul>
+            <li>构建时间：<span id="build-time"></span></li>
+            <li>测试文件路径：<code>/test.html</code></li>
+            <li>Next.js 应用路径：<code>/</code>（主页）</li>
+        </ul>
+
+        <h3>测试链接</h3>
+        <ul>
+            <li><a href="/">访问 Next.js 主页</a></li>
+            <li><a href="/game">访问游戏页面</a></li>
+            <li><a href="/test.html">刷新此测试页面</a></li>
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById('build-time').textContent = new Date().toLocaleString();
+    </script>
+</body>
+</html>

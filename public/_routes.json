@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "description": "Cloudflare Pages 路由配置 for Next.js",
+  "include": [
+    "/*"
+  ],
+  "exclude": [
+    "/_next/*",
+    "/static/*",
+    "/test.html"
+  ]
+}

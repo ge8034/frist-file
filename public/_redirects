@@ -1,0 +1,13 @@
+# Cloudflare Pages 路由配置
+# 将所有请求重定向到 Next.js 应用
+/*  /index.html  200
+
+# API 路由（如果需要）
+/api/*  /api/:splat  200
+
+# 静态资源
+/_next/*  /_next/:splat  200
+/static/*  /static/:splat  200
+
+# 测试页面
+/test.html  /test.html  200
