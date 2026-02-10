@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cloudflare Pages 根目录测试</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .status {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            font-size: 1.2rem;
+        }
+        .success {
+            background: rgba(46, 204, 113, 0.2);
+            border: 2px solid #2ecc71;
+        }
+        .warning {
+            background: rgba(241, 196, 15, 0.2);
+            border: 2px solid #f1c40f;
+        }
+        .url {
+            background: rgba(52, 152, 219, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            word-break: break-all;
+        }
+        .links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .link-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .link-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+        a {
+            color: #f1c40f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌐 Cloudflare Pages 配置测试</h1>
+        <p>如果能看到此页面，说明 Cloudflare Pages 找到了根目录文件。</p>
+
+        <div class="status success">
+            <strong>✅ 测试成功！</strong>
+            <p>Cloudflare Pages 已正确配置 Build output 目录。</p>
+        </div>
+
+        <div class="status warning">
+            <h3>📋 当前配置分析</h3>
+            <p><strong>测试文件路径：</strong><code>/index.html</code>（根目录）</p>
+            <p><strong>预期访问地址：</strong></p>
+            <div class="url">https://frist-file.pages.dev/index.html</div>
+            <p>或自动重定向到：<br>
+            <div class="url">https://frist-file.pages.dev</div></p>
+        </div>
+
+        <h3>🔗 其他测试链接</h3>
+        <div class="links">
+            <div class="link-card">
+                <strong>静态测试页面</strong>
+                <p><a href="/test.html">/test.html</a></p>
+                <small>位于 public/test.html</small>
+            </div>
+            <div class="link-card">
+                <strong>Next.js 应用</strong>
+                <p><a href="/">/ (主页)</a></p>
+                <small>Next.js 根路由</small>
+            </div>
+            <div class="link-card">
+                <strong>游戏入口</strong>
+                <p><a href="/game">/game</a></p>
+                <small>游戏模式选择页面</small>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2);">
+            <h3>🛠️ 调试信息</h3>
+            <p><strong>构建时间：</strong> <span id="build-time"></span></p>
+            <p><strong>文件位置：</strong> 项目根目录 /index.html</p>
+            <p><strong>用途：</strong> 验证 Cloudflare Pages Build output 配置</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('build-time').textContent = new Date().toLocaleString();
+
+        // 记录访问信息
+        console.log('Cloudflare Pages 根目录测试页面已加载');
+        console.log('访问时间:', new Date().toISOString());
+        console.log('User Agent:', navigator.userAgent);
+    </script>
+</body>
+</html>

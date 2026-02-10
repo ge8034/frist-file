@@ -10,7 +10,11 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "type-check": "pyright",
-    "build:cloudflare": "echo \"🚀 开始 Cloudflare Pages 构建...\" && next build && echo \"✅ Next.js 构建完成\" && echo \"🧹 清理缓存目录...\" && rm -rf .next/cache && echo \"📁 检查构建输出...\" && ls -la .next/ 2>/dev/null || dir .next && echo \"✅ Cloudflare Pages 构建完成\""
+    "build:cloudflare": "echo \"🚀 开始 Cloudflare Pages 构建...\" && next build && echo \"✅ Next.js 构建完成\" && echo \"🧹 清理缓存目录...\" && rm -rf .next/cache && echo \"📁 检查构建输出...\" && (ls -la .next/ 2>/dev/null || dir .next) && echo \"📋 文件统计:\" && echo \"- .next/ 目录大小:\" && (du -sh .next 2>/dev/null || echo \"请手动检查\") && echo \"✅ Cloudflare Pages 构建完成\"",
+    "build:cf-debug": "echo \"🔍 Cloudflare Pages 调试构建...\" && echo \"1. 清理旧构建...\" && rm -rf .next dist out && echo \"2. 构建 Next.js...\" && next build && echo \"3. 创建测试文件...\" && cp index.html .next/ 2>/dev/null || echo \"无法复制 index.html\" && cp public/test.html .next/ 2>/dev/null || echo \"无法复制 test.html\" && echo \"4. 显示构建结果...\" && find .next -name \"*.html\" -o -name \"*.js\" | head -20 && echo \"5. 创建 dist 目录备用...\" && mkdir -p dist && cp -r .next/* dist/ 2>/dev/null || echo \"复制到 dist 失败\" && echo \"✅ 调试构建完成\"",
+    "build:cf-dist": "echo \"📦 构建到 dist 目录...\" && rm -rf dist && next build && mkdir -p dist && cp -r .next/* dist/ && rm -rf .next/cache && echo \"✅ 已构建到 dist 目录\"",
+    "build:cf-static": "echo \"📄 尝试静态导出...\" && rm -rf out && next build && next export --outdir out 2>/dev/null || echo \"注意: 有动态路由，静态导出可能不完整\" && echo \"✅ 静态导出完成 (如有)\"",
+    "build:cf-test": "echo \"🧪 简单测试构建...\" && echo '<!DOCTYPE html><html><head><title>Test</title></head><body><h1>Cloudflare Test</h1></body></html>' > test-simple.html && mkdir -p dist-test && cp test-simple.html dist-test/ && echo \"✅ 测试构建完成\""
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
