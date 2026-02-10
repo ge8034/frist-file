@@ -1,18 +1,18 @@
-# Cloudflare Pages 路由配置 - Next.js 静态导出版 (trailingSlash: true)
-# 静态导出时，所有页面都是目录中的 index.html 文件
-/*/  /:splat/index.html  200
+# Cloudflare Pages 路由配置 - Next.js 标准构建版 (trailingSlash: false)
+# 标准 Next.js 构建，使用回退页面处理动态路由
+/*  /index.html  200
+
+# 静态页面路由（这些页面会生成静态HTML）
 /  /index.html  200
+/game  /game/index.html  200
+/login  /login/index.html  200
+/profile  /profile/index.html  200
+/register  /register/index.html  200
+/rooms/lobby  /rooms/lobby/index.html  200
 
-# 不带斜杠的路径重定向到带斜杠的版本
-/game  /game/  301
-/login  /login/  301
-/profile  /profile/  301
-/register  /register/  301
-/rooms/lobby  /rooms/lobby/  301
-
-# 动态路由的回退（静态导出会为动态路由创建回退页面）
-/game/*/  /game/[roomId]/index.html  200
-/rooms/*/  /rooms/[roomId]/index.html  200
+# 动态路由回退（重定向到主页或错误页面）
+/game/*  /index.html  200
+/rooms/*  /index.html  200
 
 # 静态资源
 /_next/*  /_next/:splat  200

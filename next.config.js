@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // 明确禁用静态导出（解决 Cloudflare Pages 构建错误）
+  output: undefined, // 设置为 undefined 明确禁用静态导出
   // 禁用缓存以减少构建输出大小（解决Cloudflare Pages 25MB限制）
   webpack: (config, { dev, isServer }) => {
     // 禁用缓存以减少输出大小
@@ -21,14 +23,8 @@ const nextConfig = {
   },
   // 压缩输出
   compress: true,
-  // 静态导出配置
-  output: 'export',
-  // 确保trailingSlash为true，便于静态导出
-  trailingSlash: true,
-  // 图像优化（静态导出时需要禁用或使用非优化版本）
-  images: {
-    unoptimized: true,
-  },
+  // 确保trailingSlash为false，避免路径问题
+  trailingSlash: false,
 }
 
 module.exports = nextConfig
