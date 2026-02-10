@@ -1,18 +1,18 @@
-# Cloudflare Pages 路由配置 - Next.js 静态导出版
-# 静态导出时，所有页面都是 .html 文件
-/*.html  /:splat  200
-
-# 对于不带扩展名的路径，尝试对应的 .html 文件
+# Cloudflare Pages 路由配置 - Next.js 静态导出版 (trailingSlash: true)
+# 静态导出时，所有页面都是目录中的 index.html 文件
+/*/  /:splat/index.html  200
 /  /index.html  200
-/game  /game.html  200
-/login  /login.html  200
-/profile  /profile.html  200
-/register  /register.html  200
-/rooms/lobby  /rooms/lobby.html  200
+
+# 不带斜杠的路径重定向到带斜杠的版本
+/game  /game/  301
+/login  /login/  301
+/profile  /profile/  301
+/register  /register/  301
+/rooms/lobby  /rooms/lobby/  301
 
 # 动态路由的回退（静态导出会为动态路由创建回退页面）
-/game/*  /game/[roomId].html  200
-/rooms/*  /rooms/[roomId].html  200
+/game/*/  /game/[roomId]/index.html  200
+/rooms/*/  /rooms/[roomId]/index.html  200
 
 # 静态资源
 /_next/*  /_next/:splat  200

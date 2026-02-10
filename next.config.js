@@ -21,8 +21,14 @@ const nextConfig = {
   },
   // 压缩输出
   compress: true,
-  // 确保trailingSlash为false，避免路径问题
-  trailingSlash: false,
+  // 静态导出配置
+  output: 'export',
+  // 确保trailingSlash为true，便于静态导出
+  trailingSlash: true,
+  // 图像优化（静态导出时需要禁用或使用非优化版本）
+  images: {
+    unoptimized: true,
+  },
 }
 
 module.exports = nextConfig
