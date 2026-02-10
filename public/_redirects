@@ -1,13 +1,23 @@
-# Cloudflare Pages 路由配置
-# 将所有请求重定向到 Next.js 应用
-/*  /index.html  200
+# Cloudflare Pages 路由配置 - Next.js 静态导出版
+# 静态导出时，所有页面都是 .html 文件
+/*.html  /:splat  200
 
-# API 路由（如果需要）
-/api/*  /api/:splat  200
+# 对于不带扩展名的路径，尝试对应的 .html 文件
+/  /index.html  200
+/game  /game.html  200
+/login  /login.html  200
+/profile  /profile.html  200
+/register  /register.html  200
+/rooms/lobby  /rooms/lobby.html  200
+
+# 动态路由的回退（静态导出会为动态路由创建回退页面）
+/game/*  /game/[roomId].html  200
+/rooms/*  /rooms/[roomId].html  200
 
 # 静态资源
 /_next/*  /_next/:splat  200
 /static/*  /static/:splat  200
+/public/*  /public/:splat  200
 
 # 测试页面
 /test.html  /test.html  200

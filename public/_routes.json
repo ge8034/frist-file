@@ -1,12 +1,25 @@
 {
   "version": 1,
-  "description": "Cloudflare Pages 路由配置 for Next.js",
+  "description": "Cloudflare Pages 路由配置 for Next.js 静态导出",
   "include": [
     "/*"
   ],
   "exclude": [
     "/_next/*",
     "/static/*",
+    "/public/*",
     "/test.html"
+  ],
+  "rules": [
+    {
+      "path": "/*",
+      "continue": true
+    },
+    {
+      "path": "/_next/*",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    }
   ]
 }
